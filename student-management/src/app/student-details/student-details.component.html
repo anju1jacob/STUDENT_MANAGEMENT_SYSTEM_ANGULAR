@@ -1,0 +1,28 @@
+<div class="container">
+
+  <div *ngIf="student" class="student-details">
+    <h3>Student Details</h3>
+    <p><strong>First Name:</strong> {{ student.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ student.last_name }}</p>
+    <p><strong>Date of Birth:</strong> {{ student.date_of_birth | date:'dd-MM-yyyy' }}</p>
+    <p><strong>Email:</strong> {{ student.email }}</p>
+    <p><strong>Address:</strong> {{ student.address }}</p>
+    <p><strong>State:</strong> {{ student.state }}</p>
+    <p><strong>City:</strong> {{ student.city }}</p>
+    <p><strong>Pincode:</strong> {{ student.pincode }}</p>
+    <p><strong>Subjects:</strong> {{ student.subjects ? student.subjects.join(', ') : 'No subjects selected' }}</p>
+
+    <div *ngIf="student.previous_education && student.previous_education.length > 0" class="education-details">
+      <h3>Previous Educational Details</h3>
+      <div *ngFor="let education of student.previous_education; let i = index" class="education">
+        <p><strong>Previous School {{i + 1}}:</strong> {{ education.previous_school }}</p>
+        <p><strong>Year of Start:</strong> {{ education.year_of_start | date:'dd-MM-yyyy' }}</p>
+        <p><strong>Year of End:</strong> {{ education.year_of_end | date:'dd-MM-yyyy' }}</p>
+      </div>
+    </div>
+
+    <button class="back-button" (click)="backToList()">Back to List</button>
+  </div>
+
+
+</div>

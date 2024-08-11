@@ -1,0 +1,109 @@
+
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+   
+}
+h2 {
+    text-align: center;
+    color: #f44c2e;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+
+/* Form Label */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Form Input */
+form input[type="text"],
+form input[type="date"],
+form input[type="email"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Checkbox & Radio */
+form input[type="checkbox"],
+form input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Button Styles */
+form button[type="button"],
+form button[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+form button[type="button"]:hover,
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+form button[type="button"]:first-of-type {
+    background-color: #6c757d;
+    margin-right: 10px;
+}
+
+form button[type="button"]:first-of-type:hover {
+    background-color: #5a6268;
+}
+
+/* Error Messages */
+div[ngIf] {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.text-danger {
+    color: #dc3545;
+  }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+
+    form label {
+        font-size: 14px;
+    }
+
+    form input[type="text"],
+    form input[type="date"],
+    form input[type="email"],
+    form input[type="number"],
+    form textarea,
+    form select {
+        font-size: 14px;
+    }
+
+    form button[type="button"],
+    form button[type="submit"] {
+        font-size: 14px;
+    }
+}

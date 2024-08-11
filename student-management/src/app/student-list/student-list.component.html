@@ -1,0 +1,39 @@
+<h2 style="text-align: center; color: white; margin-top: 10px;">Student List</h2>
+
+<a routerLink="/register" class="btn btn-register">Register</a>
+<div class="form-container">
+  <form (ngSubmit)="onSearch()">
+    <div class="search-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="searchName" name="name" placeholder="Search by name">
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" [(ngModel)]="searchEmail" name="email" placeholder="Search by email">
+
+      <button type="submit" class="btn-search">Search</button>
+    </div>
+  </form>
+
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of filteredStudents">
+      <td>{{ student.first_name }}</td>
+      <td>{{ student.last_name }}</td>
+      <td>{{ student.email }}</td>
+      <td>
+        <button class="view" (click)="viewStudent(student.id)">View</button>
+        <button class="edit" (click)="editStudent(student.id)">Edit</button>
+        <button class="delete" (click)="deleteStudent(student.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

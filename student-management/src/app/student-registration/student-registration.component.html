@@ -1,0 +1,116 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <h2>REGISTRAION FORM</h2>
+    <label for="first_name">First Name*</label>
+    <input type="text" formControlName="first_name">
+    <div *ngIf="submitted && f['first_name'].errors">
+        <div *ngIf="f['first_name'].errors?.['required']" class="text-danger ">First Name is required</div>
+    </div>
+
+    <label for="last_name">Last Name*</label>
+    <input type="text" id="last_name" formControlName="last_name">
+    <div *ngIf="submitted && f['last_name'].errors">
+        <div *ngIf="f['last_name'].errors?.['required']" class="text-danger ">First Name is required</div>
+    </div>
+
+    <label for="date_of_birth">Date of Birth*</label>
+    <input id="date_of_birth" formControlName="date_of_birth" type="date">
+    <div *ngIf="submitted && f['date_of_birth'].errors">
+        <div *ngIf="f['date_of_birth'].errors?.['required']" class="text-danger">Date of Birth is required</div>
+        <div *ngIf="f['date_of_birth'].errors?.['dateInvalid']" class="text-danger">Invalid Date format (DD-MM-YYYY)
+        </div>
+    </div>
+
+
+    <label for="email">Email*</label>
+    <input id="email" formControlName="email" type="email">
+    <div *ngIf="submitted && f['email'].errors">
+        <div *ngIf="f['email'].errors?.['required']" class="text-danger">Email is required</div>
+        <div *ngIf="f['email'].errors?.['email']" class="text-danger">Invalid Email format</div>
+
+    </div>
+    <div *ngIf="errorMessage" class="text-danger">
+        {{ errorMessage }}
+    </div>
+    <label for="address">Address*</label>
+    <textarea id="address" formControlName="address"></textarea>
+    <div *ngIf="submitted && f['address'].errors">
+        <div *ngIf="f['address'].errors?.['required']" class="text-danger ">Address is required</div>
+    </div>
+
+
+    <label for="state">State*</label>
+    <select id="state" formControlName="state" (change)="onStateChange()">
+        <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+    <div *ngIf="submitted && f['state'].errors">
+        <div *ngIf="f['state'].errors?.['required']" class="text-danger ">State is required</div>
+    </div>
+
+    <label for="city">City*</label>
+    <select id="city" formControlName="city">
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
+    <div *ngIf="submitted && f['city'].errors">
+        <div *ngIf="f['city'].errors?.['required']" class="text-danger ">City is required</div>
+    </div>
+
+    <label for="pincode">Pincode*</label>
+    <input id="pincode" formControlName="pincode" type="number">
+    <div *ngIf="submitted && f['pincode'].errors">
+        <div *ngIf="f['pincode'].errors?.['required']" class="text-danger ">Pincode is required</div>
+        <div *ngIf="f['pincode'].errors?.['pattern']" class="text-danger ">Pincode must be 6 digits</div>
+    </div>
+
+    <label>Subjects*</label>
+    <div *ngFor="let subject of subjects">
+        <input type="checkbox" [value]="subject" (change)="onSubjectChange($event)">{{ subject }}
+    </div>
+
+    <div *ngIf="submitted && !subjectSelected">
+        <div class="text-danger ">At least one subject must be selected</div>
+    </div>
+
+
+    <div formArrayName="previous_education">
+        <div *ngFor="let education of previous_education.controls; let i = index" [formGroupName]="i">
+            <label for="previous_school">Previous School*</label>
+            <input id="previous_school" formControlName="previous_school" type="text">
+            <div *ngIf="submitted && education.get('previous_school')?.errors?.['required']" class="text-danger ">
+                Previous School is required
+            </div>
+
+            <label for="year_of_start">Year of Start*</label>
+            <input id="year_of_start" formControlName="year_of_start" type="date">
+            <div *ngIf="submitted && education.get('year_of_start')?.errors">
+                <div *ngIf="education.get('year_of_start')?.errors?.['required']" class="text-danger">
+                    Year of Start is required
+                </div>
+                <div *ngIf="education.get('year_of_start')?.errors?.['dateInvalid']" class="text-danger">
+                    Invalid Date format. Please use dd-mm-yyyy.
+                </div>
+            </div>
+
+            <label for="year_of_end">Year of End*</label>
+            <input id="year_of_end" formControlName="year_of_end" type="date">
+            <div *ngIf="submitted && education.get('year_of_end')?.errors">
+                <div *ngIf="education.get('year_of_end')?.errors?.['required']" class="text-danger">
+                    Year of End is required
+                </div>
+                <div *ngIf="education.get('year_of_end')?.errors?.['dateInvalid']" class="text-danger">
+                    Invalid Date format. Please use dd-mm-yyyy.
+                </div>
+            </div>
+
+            <button type="button" (click)="removePreviousEducation(i)">Remove</button>
+        </div>
+    </div>
+
+    <button type="button" (click)="addPreviousEducation()">Add Previous Education</button>
+    <button type="submit">Submit</button>
+</form>
+
+
+
+
+
+<!-- If the object before the ?. is null or undefined, the whole expression evaluates to undefined. -->
