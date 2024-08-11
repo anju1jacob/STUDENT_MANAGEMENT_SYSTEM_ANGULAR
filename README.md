@@ -26,7 +26,7 @@ and email.
 ### Technology Stack
 Frontend -  Angular <br>
 Backend - Django <br>
-Database Integration: 
+##### Database Integration: 
  Use Angular HttpClient to communicate with the backend server. <br>
  Set up the backend API using Django and Django REST Framework to handle <br>
 CRUD operations on student records. 
